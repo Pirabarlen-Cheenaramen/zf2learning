@@ -4,7 +4,9 @@ namespace ProjectTimer\Controller;
  use Zend\Mvc\Controller\AbstractActionController;
  use Zend\View\Model\ViewModel;
  use ProjectTimer\Model\Project;
+ use ProjectTimer\Model\ProjectTimer;
  use ProjectTimer\Form\ProjectTimerForm;
+ use ProjectTimer\Form\ProjectForm;
  class ProjectTimerController extends AbstractActionController
  {
     protected $projecttimerTable;
@@ -28,15 +30,19 @@ namespace ProjectTimer\Controller;
 
      public function addAction()
      {
-       $form = new ProjectTimerForm();
+       $form = new ProjectForm();
          $form->get('submit')->setValue('Add');
-
          $request = $this->getRequest();
          if ($request->isPost()) {
              $project = new Project();
              $form->setInputFilter($project->getInputFilter());
              $form->setData($request->getPost());
-
+             //if(!$form->isValid())
+             //    {
+             //        print_r($form->getMessages()); die;//error messages
+             //        //$form->getErrorMessages(); //any custom error messages
+             //   }
+            //--print_r($form);
              if ($form->isValid()) {
                  $project->exchangeArray($form->getData());
                  $this->getProjectTable()->saveProject($project);
@@ -53,15 +59,34 @@ namespace ProjectTimer\Controller;
         $dStop= new \DateTime("NOW");
         $id = (int) $this->params()->fromRoute('id', 0);
         $projecttimer= $this->getProjectTimerTable()->getProjectTimerByStop($id);
-        $projecttimer->stop_time=$dStop;
+        $projecttimer->stop_time=$dStop->format('Y-m-d H:i:s');
         $this->getProjectTimerTable()->saveProjectTimer($projecttimer);
         return $this->redirect()->toRoute('projecttimer', array(
             'action' => 'index'
         ));
     }
+
+    public function startAction()
+    {
+        $dStart= new \DateTime("NOW");
+        $id = (int) $this->params()->fromRoute('id', 0);
+        $projecttimer= new ProjectTimer();
+        $data['project_id']=$id;
+        $data['start_timyye']=$dStart->format('Y-m-d H:i:s');
+        $projecttimer->exchangeArray(array(
+            'project_id'=>$id,
+            'start_time'=> $dStart->format('Y-m-d H:i:s'),
+        ));
+        $this->getProjectTimerTable()->saveProjectTimer($projecttimer);
+        return $this->redirect()->toRoute('projecttimer', array(
+            'action' => 'index'
+        ));
+    }
+
      public function editAction()
     {
-       $id = (int) $this->params()->fromRoute('id', 0);
+        $id = (int) $this->params()->fromRoute('id', 0);
+        print_r($id);
         if (!$id) {
             return $this->redirect()->toRoute('projecttimer', array(
                 'action' => 'add'
@@ -86,6 +111,7 @@ namespace ProjectTimer\Controller;
         $request = $this->getRequest();
         if ($request->isPost()) {
             $form->setInputFilter($project->getInputFilter());
+            print_r($request->getPost()); die;
             $form->setData($request->getPost());
 
             if ($form->isValid()) {
