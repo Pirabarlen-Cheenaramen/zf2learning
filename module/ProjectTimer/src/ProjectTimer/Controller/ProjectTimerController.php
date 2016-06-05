@@ -48,9 +48,20 @@ namespace ProjectTimer\Controller;
          return array('form' => $form);
      }
 
-     public function editAction()
-     {
+    public function stopAction()
+    {
+        $dStop= new \DateTime("NOW");
         $id = (int) $this->params()->fromRoute('id', 0);
+        $projecttimer= $this->projectTimerTable(array('project_id'=>$id,'stop_time' =>null ) );
+        $projecttimer->stop_time=$dStop;
+        $this->projectTimerTable->saveProjectTimerTable($projecttimer);
+        return $this->redirect()->toRoute('projecttimer', array(
+            'action' => 'index'
+        ));
+    }
+     public function editAction()
+    {
+       $id = (int) $this->params()->fromRoute('id', 0);
         if (!$id) {
             return $this->redirect()->toRoute('projecttimer', array(
                 'action' => 'add'
@@ -68,7 +79,7 @@ namespace ProjectTimer\Controller;
             ));
         }
 
-        $form  = new ProjectForm();
+        $form  = new ProjectTimerForm();
         $form->bind($project);
         $form->get('submit')->setAttribute('value', 'Edit');
 
@@ -102,11 +113,6 @@ namespace ProjectTimer\Controller;
          return $this->projecttimerTable;
     }
 
-    //get a project id, calculate its hours
-    public function getTotalHours($id)
-    {
-
-    }
 
     public function getProjectName($id)
     {
