@@ -23,13 +23,13 @@ class Project implements InputFilterAwareInterface
     {
         if (!$this->inputFilter) {
             $inputFilter = new InputFilter();
-                         $inputFilter->add(array(
-                 'name'     => 'id',
-                 'required' => true,
-                 'filters'  => array(
-                     array('name' => 'Int'),
-                 ),
-             ));
+     //           $inputFilter->add(array(
+     //            'name'     => 'idproject',
+     //            'required' => true,
+     //            'filters'  => array(
+     //                array('name' => 'Int'),
+     //            ),
+     //        ));
 
             $inputFilter->add(array(
                 'name'     => 'projectname',
@@ -57,7 +57,7 @@ class Project implements InputFilterAwareInterface
 
     public function getArrayCopy()
     {
-          return get_object_vars($this);
+        return get_object_vars($this);
 
     }
 
