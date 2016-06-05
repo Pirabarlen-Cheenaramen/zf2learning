@@ -50,7 +50,45 @@ namespace ProjectTimer\Controller;
 
      public function editAction()
      {
-     }
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (!$id) {
+            return $this->redirect()->toRoute('projecttimer', array(
+                'action' => 'add'
+            ));
+         }
+
+        // Get the Project with the specified id.  An exception is thrown
+        // if it cannot be found, in which case go to the index page.
+        try {
+            $project = $this->getProjectTable()->getProject($id);
+        }
+        catch (\Exception $ex) {
+            return $this->redirect()->toRoute('projecttimer', array(
+                'action' => 'index'
+            ));
+        }
+
+        $form  = new ProjectForm();
+        $form->bind($project);
+        $form->get('submit')->setAttribute('value', 'Edit');
+
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setInputFilter($project->getInputFilter());
+            $form->setData($request->getPost());
+
+            if ($form->isValid()) {
+                $this->getProjectTable()->saveProject($project);
+                // Redirect to list of projects
+               return $this->redirect()->toRoute('projecttimer');
+            }
+        }
+
+        return array(
+            'id' => $id,
+            'form' => $form,
+       );
+    }
 
      public function deleteAction()
      {
