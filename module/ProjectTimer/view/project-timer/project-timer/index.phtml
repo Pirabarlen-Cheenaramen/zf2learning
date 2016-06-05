@@ -1,0 +1,30 @@
+<?php
+ // module/ProjectTimer/view/projecttimer/projecttimer/index.phtml:
+ $title = 'My projecttimers';
+ $this->headTitle($title);
+ ?>
+ <h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('projecttimer', array('action'=>'add'));?>">Add new projecttimer</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>project</th>
+     <th>total hours</th>
+     <th>start/stop</th>
+ </tr>
+ <?php foreach ($projectTable as $projecttimer) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($projecttimer->start_time);?></td>
+     <td><?php echo $this->escapeHtml($projecttimer->start_time);?></td>
+     <td><?php echo $this->escapeHtml($projecttimer->stop_time);?></td>
+     <td>
+         <a href="<?php echo $this->url('projecttimer',
+             array('action'=>'edit', 'id' => $projecttimer->project_id));?>">Edit</a>
+         <a href="<?php echo $this->url('projecttimer',
+             array('action'=>'delete', 'id' => $projecttimer->project_id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>
