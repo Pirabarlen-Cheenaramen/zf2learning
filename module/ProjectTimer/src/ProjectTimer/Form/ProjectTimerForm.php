@@ -18,7 +18,7 @@
              'name' => 'projectname',
              'type' => 'Text',
              'options' => array(
-                 'label' => 'Title',
+                 'label' => 'Project Name ',
              ),
          ));
          $this->add(array(
