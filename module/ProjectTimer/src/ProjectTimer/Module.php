@@ -10,6 +10,7 @@ namespace ProjectTimer;
  use Zend\Mvc\ModuleRouteListener;
  use Zend\Mvc\MvcEvent;
  use ProjectTimer\Model\ProjectTimer;
+ use ProjectTimer\Model\Project;
 
  class Module implements AutoloaderProviderInterface, ConfigProviderInterface
  {
@@ -44,7 +45,7 @@ namespace ProjectTimer;
                      $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                      $resultSetPrototype = new ResultSet();
                      $resultSetPrototype->setArrayObjectPrototype(new ProjectTimer());
-                     return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
+                     return new TableGateway('project_timer', $dbAdapter, null, $resultSetPrototype);
                  },
         'ProjectTimer\Model\ProjectTable' =>  function($sm) {
                      $tableGateway = $sm->get('ProjectTableGateway');
@@ -55,7 +56,7 @@ namespace ProjectTimer;
                      $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                      $resultSetPrototype = new ResultSet();
                      $resultSetPrototype->setArrayObjectPrototype(new ProjectTimer());
-                     return new TableGateway('album', $dbAdapter, null, $resultSetPrototype);
+                     return new TableGateway('project', $dbAdapter, null, $resultSetPrototype);
                  },
              ), //sub array
          ); //main array
