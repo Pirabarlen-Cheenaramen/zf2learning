@@ -12,7 +12,8 @@ namespace ProjectTimer\Controller;
      public function indexAction()
      {
         return new ViewModel(array(
-             'projecttimer' => $this->getProjectTimerTable()->fetchAll(),
+             'projecttimertable' => $this->getProjectTimerTable()->fetchAll(),
+             'projecttable' => $this->getProjectTable()->fetchAll(),
          ));
      }
 
@@ -34,6 +35,18 @@ namespace ProjectTimer\Controller;
              $this->projecttimerTable = $sm->get('ProjectTimer\Model\ProjectTimerTable');
          }
          return $this->projecttimerTable;
+    }
+
+    //get a project id, calculate its hours
+    public function getTotalHours()
+    {
+
+    }
+
+    public function getProjectName($id)
+    {
+
+
     }
 
     public function getProjectTable()
