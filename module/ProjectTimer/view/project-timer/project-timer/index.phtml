@@ -16,15 +16,21 @@
  </tr>
  <?php foreach ($projecthashkey as $pid=>$projectname) : ?>
  <tr>
-     <td><?php echo $this->escapeHtml($projecthashkey[$pid]);?></td>
-     <td><?php echo $this->escapeHtml($timesummary[$pid]);?></td>
+    <td>
+            <a href="<?php echo $this->url('projecttimer',
+             array('action'=>'edit', 'id' => $pid));?>">
+            <?php echo $this->escapeHtml($projecthashkey[$pid]);?></a>
+    </td>
+
+     <td>
+            <?php echo $this->escapeHtml($timesummary[$pid]);?></td>
      <td>
         <?php if ( $projectstatus[$pid]==1 ): ?>
          <a href="<?php echo $this->url('projecttimer',
-             array('action'=>'stop', 'id' => $projecttimer->project_id));?>">Stop</a>
+             array('action'=>'stop', 'id' => $pid));?>">Stop</a>
         <?php else: ?>
          <a href="<?php echo $this->url('projecttimer',
-             array('action'=>'start', 'id' => $projecttimer->project_id));?>">Start</a>
+             array('action'=>'start', 'id' => $pid));?>">Start</a>
         <?php endif ?>
      </td>
  </tr>
