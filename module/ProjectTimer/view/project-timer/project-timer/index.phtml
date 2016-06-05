@@ -14,7 +14,7 @@
      <th>total hours</th>
      <th>start/stop</th>
  </tr>
- <?php foreach ($projecttimerTable as $projecttimer) : ?>
+ <?php foreach ($projecttimertable as $projecttimer) : ?>
  <tr>
      <td><?php echo $this->escapeHtml($projecttimer->start_time);?></td>
      <td><?php echo $this->escapeHtml($projecttimer->start_time);?></td>
@@ -27,4 +27,7 @@
      </td>
  </tr>
  <?php endforeach; ?>
- </table>
+</table>
+ <?php foreach($projecttable as $aproject): ?>
+<?php echo $aproject->projectname;?>
+<?php endforeach; ?>
