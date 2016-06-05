@@ -29,6 +29,18 @@ namespace ProjectTimer\Model;
          return $row;
      }
 
+     public function getProjectTimerByStop($id)
+     {
+         $id  = (int) $id;
+         $rowset = $this->tableGateway->select(array('project_id' => $id, 'stop_time'=>null));
+         $row = $rowset->current();
+         if (!$row) {
+             throw new \Exception("Could not find row $id");
+         }
+         return $row;
+     }
+
+
      public function saveProjectTimer(ProjectTimer $projecttimer)
      {
          $data = array(
