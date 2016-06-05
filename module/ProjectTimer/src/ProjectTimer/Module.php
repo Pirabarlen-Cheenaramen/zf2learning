@@ -47,9 +47,10 @@ namespace ProjectTimer;
                      $resultSetPrototype->setArrayObjectPrototype(new ProjectTimer());
                      return new TableGateway('project_timer', $dbAdapter, null, $resultSetPrototype);
                  },
-        'ProjectTimer\Model\ProjectTable' =>  function($sm) {
+
+                'ProjectTimer\Model\ProjectTable' =>  function($sm) {
                      $tableGateway = $sm->get('ProjectTableGateway');
-                     $table = new ProjectTimerTable($tableGateway);
+                     $table = new ProjectTable($tableGateway);
                      return $table;
                  },
                  'ProjectTableGateway' => function ($sm) {
