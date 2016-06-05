@@ -11,7 +11,7 @@ namespace ProjectTimer;
  use Zend\Mvc\MvcEvent;
  use ProjectTimer\Model\ProjectTimer;
  use ProjectTimer\Model\Project;
-
+ use ProjectTimer\Form\ProjectTimerForm;
  class Module implements AutoloaderProviderInterface, ConfigProviderInterface
  {
      public function getAutoloaderConfig()
@@ -56,7 +56,7 @@ namespace ProjectTimer;
                  'ProjectTableGateway' => function ($sm) {
                      $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                      $resultSetPrototype = new ResultSet();
-                     $resultSetPrototype->setArrayObjectPrototype(new ProjectTimer());
+                     $resultSetPrototype->setArrayObjectPrototype(new Project());
                      return new TableGateway('project', $dbAdapter, null, $resultSetPrototype);
                  },
              ), //sub array
