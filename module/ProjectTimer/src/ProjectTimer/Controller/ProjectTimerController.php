@@ -52,9 +52,9 @@ namespace ProjectTimer\Controller;
     {
         $dStop= new \DateTime("NOW");
         $id = (int) $this->params()->fromRoute('id', 0);
-        $projecttimer= $this->projectTimerTable(array('project_id'=>$id,'stop_time' =>null ) );
+        $projecttimer= $this->getProjectTimerTable()->getProjectTimerByStop($id);
         $projecttimer->stop_time=$dStop;
-        $this->projectTimerTable->saveProjectTimerTable($projecttimer);
+        $this->getProjectTimerTable()->saveProjectTimer($projecttimer);
         return $this->redirect()->toRoute('projecttimer', array(
             'action' => 'index'
         ));
@@ -166,9 +166,6 @@ namespace ProjectTimer\Controller;
             }
         }
         return $this->timeSummary;
-    }
-    private function getProjectTimerHashKey()
-    {
     }
 
     public function getProjectTable()
