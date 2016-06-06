@@ -1,6 +1,6 @@
 <?php
  // module/ProjectTimer/view/projecttimer/projecttimer/index.phtml:
- $title = 'My projecttimers';
+ $title = 'My project timer';
  $this->headTitle($title);
  ?>
  <h1><?php echo $this->escapeHtml($title); ?></h1>
@@ -17,9 +17,7 @@
  <?php foreach ($projecthashkey as $pid=>$projectname) : ?>
  <tr>
     <td>
-            <a href="<?php echo $this->url('projecttimer',
-             array('action'=>'edit', 'id' => $pid));?>">
-            <?php echo $this->escapeHtml($projecthashkey[$pid]);?></a>
+            <a><?php echo $this->escapeHtml($projecthashkey[$pid]);?></a>
     </td>
 
      <td>
