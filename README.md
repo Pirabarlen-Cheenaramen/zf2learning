@@ -1,2 +1,12 @@
-# zf2learning
-Just a little project to learn zf2, basically, making a CRUD for a simple project management scenario. Add projects, add start time, stop time for projects. The aim is to get as much feedbacks about "the proper" way of doing things in zf2
+# Sample simple project time management tool.
+v1.0 - Can only add new project & perform simple time management for projects added.
+
+#using the dev webserver provided
+```
+php -S 0.0.0.0:8080 -t public/ public/index.php
+```
+
+then visit:
+```
+http://localhost:8080/projecttimer
+```
