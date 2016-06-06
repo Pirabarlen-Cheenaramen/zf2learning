@@ -1,3 +1,0 @@
- "autoload": {
-     "psr-0": { "Album": "module/ProjectTimer/src/" }
- },
