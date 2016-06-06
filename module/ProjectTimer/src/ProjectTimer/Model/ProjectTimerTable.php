@@ -49,9 +49,10 @@ namespace ProjectTimer\Model;
          );
 
          $id = (int) $projecttimer->project_id;
-         if ($id == 0) {
+         if ( $id != 0  && $projecttimer->start_time!=null && $projecttimer->stop_time==null){
+             $data['project_id']=$id;
              $this->tableGateway->insert($data);
-         } else {
+         } elseif ($id !=0 && $projecttimer->start_time!=null && $projecttimer->stop_time !=null) {
              if ($this->getProjectTimer($id)) {
                  $this->tableGateway->update($data, array('project_id' => $id));
              } else {
