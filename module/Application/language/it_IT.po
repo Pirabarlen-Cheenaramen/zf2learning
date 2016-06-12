@@ -125,7 +125,7 @@ msgstr "Il controller richiesto non è stato in grado di elaborare la richiesta.
 
 #: ../view/error/404.phtml:13
 msgid "The requested controller could not be mapped to an existing controller class."
-msgstr "Non è stato possibile mappare il controller richiesto ad una classe di tipo controller."
+msgstr "Non è stato possible mappare il controller richiesto ad una classe di tipo controller."
 
 #: ../view/error/404.phtml:16
 msgid "The requested controller was not dispatchable."
@@ -133,7 +133,7 @@ msgstr "Il controller richiesto non è un oggetto dispatchable."
 
 #: ../view/error/404.phtml:19
 msgid "The requested URL could not be matched by routing."
-msgstr "Non è stato possibile effettuare il match dell'indirizzo richiesto tramite routing."
+msgstr "Non è stato possible effettuare il match dell'indirizzo richiesto tramite routing."
 
 #: ../view/error/404.phtml:22
 msgid "We cannot determine at this time why a 404 was generated."
